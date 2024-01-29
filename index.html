@@ -13,119 +13,126 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background: url('https://img.freepik.com/premium-photo/simple-beige-plane-wall-background_762678-869.jpg')no-repeat;
+            background: url('https://images.pexels.com/photos/235985/pexels-photo-235985.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500')no-repeat;
             background-size: cover;
             background-color: #f8f9fa;
         }
 
-        #textBox {
-            width: 80%;
-            max-width: 400px;
+        #textArea {
+            width: 400px;
             height: 200px;
+            margin-bottom: 10px;
             padding: 10px;
-            margin-bottom: 20px;
             font-size: 16px;
             border: 1px solid #ccc;
             resize: none;
         }
 
-        #controls {
+        #formattingControls {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
-            width: 80%;
+            gap: 10px;
         }
 
         button {
-            font-size: 14px;
-            padding: 10px 20px;
-            margin: 5px;
+            font-size: 16px;
+            padding: 8px 12px;
             cursor: pointer;
-            background-color: #007bff;
-            color: #fff;
             border: 1px solid #007bff;
             border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
             transition: background-color 0.3s, color 0.3s;
         }
 
         button:hover {
             background-color: #0056b3;
         }
-
-
-        @media (max-width: 600px) {
-            #textBox {
+        @media only screen and (max-width: 600px) {
+            #textArea {
                 width: 90%;
+                max-width: none; /* Remove maximum width on smaller screens */
             }
 
-            #controls {
-                width: 90%;
+            button {
+                font-size: 14px;
+                padding: 6px 10px;
             }
         }
     </style>
 </head>
 <body>
 
-<textarea id="textBox" placeholder="Type your text here..."></textarea>
+<textarea id="textArea" placeholder="Enter text..."></textarea>
 
-<div id="controls">
-    <button onclick="toggleFormatting('bold')">Bold</button>
-    <button onclick="toggleFormatting('italic')">Italic</button>
+<div id="formattingControls">
+    <button onclick="applyBold()">Bold</button>
+    <button onclick="applyItalic()">Italic</button>
     <button onclick="changeFontSize()">Font Size</button>
     <button onclick="changeFontType()">Font Type</button>
-    <button onclick="toggleFormatting('underline')">Underline</button>
-    <button onclick="toggleBorder()">Border</button>
-    <button onclick="toggleTextShadow()">Text Shadow</button>
+    <button onclick="applyUnderline()">Underline</button>
+    <button onclick="applyBorder()">Border</button>
+    <button onclick="applyTextShadow()">Text Shadow</button>
     <button onclick="changeLineSpacing()">Line Spacing</button>
     <button onclick="changeBackgroundColor()">Background Color</button>
     <button onclick="changeTextColor()">Text Color</button>
 </div>
 
 <script>
-    function toggleFormatting(style) {
-        document.execCommand(style, false, null);
+    function applyBold() {
+        document.getElementById('textArea').style.fontWeight = 'bold';
+    }
+
+    function applyItalic() {
+        document.getElementById('textArea').style.fontStyle = 'italic';
     }
 
     function changeFontSize() {
-        var size = prompt("Enter Font Size (px):", "16");
-        if (size !== null) {
-            document.execCommand('fontSize', false, size);
+        var size = prompt('Enter Font Size (e.g., 16px):');
+        if (size) {
+            document.getElementById('textArea').style.fontSize = size;
         }
     }
 
     function changeFontType() {
-        var font = prompt("Enter Font Type:", "Arial");
-        if (font !== null) {
-            document.execCommand('fontName', false, font);
+        var font = prompt('Enter Font Type (e.g., Arial):');
+        if (font) {
+            document.getElementById('textArea').style.fontFamily = font;
         }
     }
 
-    function toggleBorder() {
-        document.execCommand('insertHTML', false, '<span style="border: 1px solid black;">' + getSelection() + '</span>');
+    function applyUnderline() {
+        document.getElementById('textArea').style.textDecoration = 'underline';
     }
 
-    function toggleTextShadow() {
-        document.execCommand('insertHTML', false, '<span style="text-shadow: 2px 2px 2px #888;">' + getSelection() + '</span>');
+    function applyBorder() {
+        document.getElementById('textArea').style.border = '1px solid #007bff';
+        document.getElementById('textArea').style.borderRadius = '5px';
+        document.getElementById('textArea').style.padding = '10px';
+    }
+
+    function applyTextShadow() {
+        document.getElementById('textArea').style.textShadow = '2px 2px 4px #007bff';
     }
 
     function changeLineSpacing() {
-        var spacing = prompt("Enter Line Spacing (e.g., 1.5):", "1.5");
-        if (spacing !== null) {
-            document.execCommand('insertHTML', false, '<div style="line-height: ' + spacing + ';">' + getSelection() + '</div>');
+        var spacing = prompt('Enter Line Spacing (e.g., 1.5):');
+        if (spacing) {
+            document.getElementById('textArea').style.lineHeight = spacing;
         }
     }
 
     function changeBackgroundColor() {
-        var color = prompt("Enter Background Color:", "#ffffff");
-        if (color !== null) {
-            document.execCommand('insertHTML', false, '<span style="background-color: ' + color + ';">' + getSelection() + '</span>');
+        var color = prompt('Enter Background Color (e.g., #ffff00):');
+        if (color) {
+            document.getElementById('textArea').style.backgroundColor = color;
         }
     }
 
     function changeTextColor() {
-        var color = prompt("Enter Text Color:", "#000000");
-        if (color !== null) {
-            document.execCommand('foreColor', false, color);
+        var color = prompt('Enter Text Color (e.g., #ff0000):');
+        if (color) {
+            document.getElementById('textArea').style.color = color;
         }
     }
 </script>
