@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Formatting Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: url('https://img.freepik.com/premium-photo/simple-beige-plane-wall-background_762678-869.jpg')no-repeat;
+            background-size: cover;
+            background-color: #f8f9fa;
+        }
+
+        #textArea {
+            width: 400px;
+            height: 200px;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            resize: none;
+        }
+
+        #formattingControls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 8px 12px;
+            cursor: pointer;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<textarea id="textArea" placeholder="Enter text..."></textarea>
+
+<div id="formattingControls">
+    <button onclick="applyBold()">Bold</button>
+    <button onclick="applyItalic()">Italic</button>
+    <button onclick="changeFontSize()">Font Size</button>
+    <button onclick="changeFontType()">Font Type</button>
+    <button onclick="applyUnderline()">Underline</button>
+    <button onclick="applyBorder()">Border</button>
+    <button onclick="applyTextShadow()">Text Shadow</button>
+    <button onclick="changeLineSpacing()">Line Spacing</button>
+    <button onclick="changeBackgroundColor()">Background Color</button>
+    <button onclick="changeTextColor()">Text Color</button>
+</div>
+
+<script>
+    function applyBold() {
+        document.getElementById('textArea').style.fontWeight = 'bold';
+    }
+
+    function applyItalic() {
+        document.getElementById('textArea').style.fontStyle = 'italic';
+    }
+
+    function changeFontSize() {
+        var size = prompt('Enter Font Size (e.g., 16px):');
+        if (size) {
+            document.getElementById('textArea').style.fontSize = size;
+        }
+    }
+
+    function changeFontType() {
+        var font = prompt('Enter Font Type (e.g., Arial):');
+        if (font) {
+            document.getElementById('textArea').style.fontFamily = font;
+        }
+    }
+
+    function applyUnderline() {
+        document.getElementById('textArea').style.textDecoration = 'underline';
+    }
+
+    function applyBorder() {
+        document.getElementById('textArea').style.border = '1px solid #007bff';
+        document.getElementById('textArea').style.borderRadius = '5px';
+        document.getElementById('textArea').style.padding = '10px';
+    }
+
+    function applyTextShadow() {
+        document.getElementById('textArea').style.textShadow = '2px 2px 4px #007bff';
+    }
+
+    function changeLineSpacing() {
+        var spacing = prompt('Enter Line Spacing (e.g., 1.5):');
+        if (spacing) {
+            document.getElementById('textArea').style.lineHeight = spacing;
+        }
+    }
+
+    function changeBackgroundColor() {
+        var color = prompt('Enter Background Color (e.g., #ffff00):');
+        if (color) {
+            document.getElementById('textArea').style.backgroundColor = color;
+        }
+    }
+
+    function changeTextColor() {
+        var color = prompt('Enter Text Color (e.g., #ff0000):');
+        if (color) {
+            document.getElementById('textArea').style.color = color;
+        }
+    }
+</script>
+
+</body>
+</html>
